@@ -52,8 +52,11 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (5.3.4)
     multi_json (1.10.1)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     passenger (4.0.44)
       daemon_controller (>= 1.2.0)
       rack
@@ -120,6 +123,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   passenger
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
