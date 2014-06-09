@@ -1,4 +1,8 @@
-<h1>Home Page</h1>
-<p>Change me!</p> 
+<h1>is there anything on at the liberty?</h1>
 
-<%= @date_time %>
+<% if @event.on_today%>
+   Yeah -  <%= @event.name %> is on today
+<% else %>
+	Not today, but <%= @event.name %> is on <%= @event.date.to_date %>
+<% end %> 
+
