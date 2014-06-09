@@ -1,7 +1,19 @@
+require 'open-uri'
+require 'nokogiri'
+
 class EventsController < ApplicationController
   def index
 	render json: get_all_events
   end
+
+ def next
+ 	render json: get_next_event
+ end
+
+ def get_next_event
+
+ 	get_all_events[0]
+ end
 
  def get_all_events
 	base_url = 'http://www.liberty-stadium.com/'

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
-  resources :events
+  get 'events', to: 'events#index'
+  get 'events/next', to: 'events#next'
 
 end
