@@ -4,7 +4,7 @@ Site which will let you know if there is anything on at the [Liberty Stadium](ht
 
 Written (Badly) in RoR to help me get to know the language/framework.
 
-Check it out [here](http://ec2-54-76-144-105.eu-west-1.compute.amazonaws.com)
+Check it out [here](http://itaoatl.herokuapp.com)
 
 ## Resources
 
@@ -16,4 +16,4 @@ The following articles/links were of great use when building this:
 
 ## API
 
-There is a basic API which allows you to view [all events](http://ec2-54-76-144-105.eu-west-1.compute.amazonaws.com/events) or to just get the [next event](http://ec2-54-76-144-105.eu-west-1.compute.amazonaws.com/events/next)
+There is a basic API which allows you to view [all events](http://itaoatl.herokuapp.com/events) or to just get the [next event](http://itaoatl.herokuapp.com/events/next)
