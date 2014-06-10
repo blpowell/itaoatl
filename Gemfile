@@ -27,4 +27,6 @@ gem 'spring',        group: :development
 #Use Passenger as our app server
 gem 'passenger'
 
+gem 'rails_12factor', group: :production
+
 gem 'nokogiri'
