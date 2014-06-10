@@ -14,7 +14,7 @@
 		<div id="huge">Nope</div>
 		<div id="upcoming_event">
 			<p>
-			but <a href="<%=@event.url %>"><%=@event.name %></a> is on <%=DateHelper.readable_future_date(@event.date) %> <br/>
+			but <a href="<%=@event.url %>"><%=@event.name %></a> is <%=DateHelper.readable_future_date(@event.date) %> <br/>
 			(<%= @event.date.strftime("%A %B %d %Y at %H:%M")%>)
 			</p>
 		</div>
