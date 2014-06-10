@@ -5,4 +5,8 @@ class PagesController < ApplicationController
   	@event = Scraper.get_next_event
   end
 
+  def why
+
+  end
+
 end
