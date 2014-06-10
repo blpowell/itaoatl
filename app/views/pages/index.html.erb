@@ -9,12 +9,12 @@
 	<% if@event.on_today%>
 		<div id="huge">Yes</div>
 		<div id="upcoming_event">
-			<p><%=@event.name %> is on at <%= @event.date.strftime("%H:%M") %></p>
+			<p><a href="<%=@event.url %>"><%=@event.name %></a> is on today at <%= @event.date.strftime("%H:%M") %></p>
 		</div>
 	<% else %>
 		<div id="huge">Nope</div>
 		<div id="upcoming_event">
-			<p>but <%=@event.name %> is on <%= @event.date.strftime("%A %B %Y at %H:%M")%></p>
+			<p>but <a href="<%=@event.url %>"><%=@event.name %></a> is on <%= @event.date.strftime("%A %B %Y at %H:%M")%></p>
 		</div>
 	<% end %> 
 <%end%>
