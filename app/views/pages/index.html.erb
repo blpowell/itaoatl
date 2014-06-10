@@ -1,8 +1,21 @@
-<h1>is there anything on at the liberty?</h1>
 
-<% if @event.on_today%>
-   Yeah -  <%= @event.name %> is on today
-<% else %>
-	Not today, but <%= @event.name %> is on <%= @event.date.to_date %>
-<% end %> 
+<%if @event == nil %>
+	<div id="huge">Nope</div>
+	<div id="upcoming_event">
+		<p>there doesn't seem to be any upcomming events either</p>
+		<p>check the <a href="http://www.liberty-stadium.com/events.php">Liberty Stadium Events Calendar</a> to be sure<p>
+	</div>
+<%else%>
+	<% if@event.on_today%>
+		<div id="huge">Yes</div>
+		<div id="upcoming_event">
+			<p><%=@event.name %> is on at <%= @event.date.strftime("%H:%M") %></p>
+		</div>
+	<% else %>
+		<div id="huge">Nope</div>
+		<div id="upcoming_event">
+			<p>but <%=@event.name %> is on <%= @event.date.strftime("%A %B %Y at %H:%M")%></p>
+		</div>
+	<% end %> 
+<%end%>
 

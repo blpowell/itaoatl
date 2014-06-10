@@ -16,16 +16,20 @@ module Scraper
 
 			event_url = base_url + event.at_css("a")['href']
 
-			#Events page doesnt have too much info - so we need to go to each URL
+			#Events page doesnt have enough info - so we need to go to each URL
 			event_page = Nokogiri::HTML(open(event_url))
-
 			event_name = event_page.at_css("h1").text.strip
 			event_date = DateTime.parse(event_page.at_css("div.cms_events_view_date").text.strip)
-			resp.push(Event.new(name: event_name, date:event_date, url: event_url))
+
+			if  event_date.future? #Ignore events in the past
+				resp.push(Event.new(name: event_name, date:event_date, url: event_url))
+			end
+
 		end
 
 	#Only for testing!
 	#resp.push(Event.new(name:"Event on Now",date: DateTime.now, url: "google.com")) #Event today
+	#resp.push(Event.new(name:"Event on tomorrow", date: -1.days.from_now, url: "google.com")) #Event tomorrow
 	#resp.push(Event.new(name:"Christmas",date: DateTime.parse("25-Dec-2014"), url: "google.com")) #Future event
 
 	resp.sort! { |a,b| a.date <=> b.date }
