@@ -1,8 +1,10 @@
 # Is There Anything On At The Liberty?
 
-Site which will let you know if there is anything on at the [Liberty Statium](http://www.liberty-stadium.com) in Swansea so you can avoid the traffic!
+Site which will let you know if there is anything on at the [Liberty Stadium](http://www.liberty-stadium.com) in Swansea so you can avoid the traffic!
 
-Written (Badly) in RoR to help me get to know the language/framework 
+Written (Badly) in RoR to help me get to know the language/framework.
+
+Check it out [here](http://ec2-54-76-144-105.eu-west-1.compute.amazonaws.com)
 
 ## Resources
 
