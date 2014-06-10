@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
 	include Scraper
+	
   def index
 	render json: Scraper.get_all_events
   end

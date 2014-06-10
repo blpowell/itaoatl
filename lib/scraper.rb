@@ -4,7 +4,7 @@ require 'nokogiri'
 module Scraper
 
 	def self.get_next_event
- 		get_all_events[0]
+ 		get_all_events[0] #Events are sorted by date, so just get the 1st one
  	end
 
  	def self.get_all_events
@@ -26,13 +26,7 @@ module Scraper
 			end
 
 		end
-
-	#Only for testing!
-	#resp.push(Event.new(name:"Event on Now",date: DateTime.now, url: "google.com")) #Event today
-	#resp.push(Event.new(name:"Event on tomorrow", date: -1.days.from_now, url: "google.com")) #Event tomorrow
-	#resp.push(Event.new(name:"Christmas",date: DateTime.parse("25-Dec-2014"), url: "google.com")) #Future event
-
-	resp.sort! { |a,b| a.date <=> b.date }
+		resp.sort! { |a,b| a.date <=> b.date }
 	
 	end
 end
