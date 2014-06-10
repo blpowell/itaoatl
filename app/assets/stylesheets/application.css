@@ -4,7 +4,6 @@ body {
 }
 
 a {
-
 	text-decoration: none;
 	border-bottom: 1px dotted #4C4C4C;
 	color: #4C4C4C;
@@ -18,7 +17,7 @@ a {
 }
 
 #huge {
-	font-size: 8em;
+	font-size: 7em;
 	text-align: center;
 }
 
@@ -30,8 +29,13 @@ a {
 #footer {
 	font-size: 0.8em;
 	text-align: center;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     margin-bottom: 25px;
+    margin-top: 25px;
+    padding-top:5;
+}
+
+#footer hr {
+  width: 75%;
+  border-top: 1px dotted #4C4C4C;;
 }
