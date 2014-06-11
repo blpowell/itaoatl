@@ -1,12 +1,12 @@
 body {
 	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-	color: #4C4C4C;
+	color: #999;
 }
 
 a {
 	text-decoration: none;
-	border-bottom: 1px dotted #4C4C4C;
-	color: #4C4C4C;
+	border-bottom: 1px dotted #999;
+	color: #999;
 }
 
 #header {
@@ -19,6 +19,8 @@ a {
 #huge {
 	font-size: 7em;
 	text-align: center;
+	color: #4C4C4C;
+
 }
 
 #upcoming_event {
@@ -37,5 +39,11 @@ a {
 
 #footer hr {
   width: 75%;
-  border-top: 1px solid #4C4C4C;;
+  border-top: 1px solid #999;;
+}
+
+#footer #disclaimer {
+    font-size: 0.75em;
+	padding-top:15px;
+		color: #ccc;
 }
