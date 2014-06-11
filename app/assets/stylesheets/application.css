@@ -45,5 +45,8 @@ a {
 #footer #disclaimer {
     font-size: 0.75em;
 	padding-top:15px;
-		color: #ccc;
+	color: #ccc;
+}
+@media only screen and (max-device-width: 480px) {
+	#header { color: #FF0000; }
 }
