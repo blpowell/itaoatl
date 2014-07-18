@@ -1,5 +1,7 @@
 # Is There Anything On At The Liberty?
 
+[![Build Status](https://travis-ci.org/blpowell/itaoatl.svg?branch=master)](https://travis-ci.org/blpowell/itaoatl)
+
 Site which will let you know if there is anything on at the [Liberty Stadium](http://www.liberty-stadium.com) in Swansea so you can avoid the traffic!
 
 Written (Badly) in RoR to help me get to know the language/framework.
