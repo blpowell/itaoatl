@@ -1,10 +1,11 @@
 class Event
-   attr_accessor :name, :date, :url, :on_today
+   attr_accessor :name, :date, :url, :source, :on_today
 
     def initialize(options = {})
         self.name = options[:name] 
         self.date = options[:date] 
         self.url =  options[:url] 
+        self.source =  options[:source] 
         self.on_today = check_is_on_today
     end
 

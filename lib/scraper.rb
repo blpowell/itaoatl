@@ -7,7 +7,16 @@ module Scraper
  		get_all_events[0] #Events are sorted by date, so just get the 1st one
  	end
 
- 	def self.get_all_events
+
+	def self.get_all_events
+#		resp = Array.new 
+		get_liberty_events + get_bbc_events
+
+		#resp.sort! { |a,b| a.date <=> b.date }
+	end
+
+
+ 	def self.get_liberty_events
 		base_url = 'http://www.liberty-stadium.com/'
 
 		doc = Nokogiri::HTML(open(base_url + "events.php"))
@@ -22,12 +31,10 @@ module Scraper
 			event_date = DateTime.parse(event_page.at_css("div.cms_events_view_date").text.strip)
 
 			if  event_date.future? #Ignore events in the past
-				resp.push(Event.new(name: event_name, date:event_date, url: event_url))
+				resp.push(Event.new(name: event_name, date:event_date, url: event_url, source:"liberty-stadium"))
 			end
-
 		end
-		resp.sort! { |a,b| a.date <=> b.date }
-	
+		resp
 	end
 
 
@@ -38,16 +45,18 @@ module Scraper
 		resp = Array.new
 
 		doc.xpath('//tr[starts-with(@id, "match-row")]').map do |row|
+			match_name = row.at_css("td.match-details").text.strip
+			if match_name.starts_with?('Swansea')
+				match_date = DateTime.parse(row.at_css("td.match-date").text + row.at_css("td.kickoff").text)
+				
+				(match_date.month < Date.today.month)? (match_date = match_date + 365) : match_date 
 
-			match_name = row.at_css("td.match-details").text
-			event_date = row.at_css("td.match-date").text
-
-			resp.push(Event.new(name: match_name, date:event_date, url: base_url))
-
-		end 
-
+				match_url = base_url + '#' + row['id']
+				resp.push(Event.new(name: match_name, date:match_date, url: match_url, source:'bbc'))
+			end
+			
+		end
 		resp
-
-	end
-
+	end 
+ 
 end
