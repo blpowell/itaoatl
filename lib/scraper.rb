@@ -29,4 +29,25 @@ module Scraper
 		resp.sort! { |a,b| a.date <=> b.date }
 	
 	end
+
+
+	def self.get_bbc_events
+		base_url = 'http://www.bbc.co.uk/sport/football/teams/swansea-city/fixtures'
+		doc = Nokogiri::HTML(open(base_url))
+
+		resp = Array.new
+
+		doc.xpath('//tr[starts-with(@id, "match-row")]').map do |row|
+
+			match_name = row.at_css("td.match-details").text
+			event_date = row.at_css("td.match-date").text
+
+			resp.push(Event.new(name: match_name, date:event_date, url: base_url))
+
+		end 
+
+		resp
+
+	end
+
 end
