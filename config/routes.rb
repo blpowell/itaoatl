@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   get 'events', to: 'events#index'
   get 'events/next', to: 'events#next'
   get 'why', to: 'pages#why'
-  get 'bbc', to: 'events#bbc'
+  get 'swans', to: 'events#swans_fixtures'
 end

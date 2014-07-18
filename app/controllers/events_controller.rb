@@ -9,8 +9,8 @@ class EventsController < ApplicationController
  	render json: Scraper.get_next_event
   end
 
-  def bbc
- 	render json: Scraper.get_bbc_events
+  def swans_fixtures
+ 	render json: Scraper.get_swansea_city_fixtures
   end
 
 end

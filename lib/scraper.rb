@@ -58,5 +58,13 @@ module Scraper
 		end
 		resp
 	end 
+
+	def self.get_swansea_city_fixtures
+		base_url = 'http://www.football-data.org/soccerseason/354/fixtures?team=Swansea%20City'
+		doc = JSON.load(open(base_url)).select {|hash| hash['homeTeam'] == 'Swansea City'}
+		resp = Array.new
+		resp.push(Event.new(name: match_name, date:match_date, url: match_url, source:'bbc'))
+
+	end
  
 end

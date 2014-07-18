@@ -31,6 +31,4 @@ gem 'rails_12factor', group: :production
 
 gem 'nokogiri'
 
-group :test do
-  gem 'rake'
-end
+gem 'rake'
