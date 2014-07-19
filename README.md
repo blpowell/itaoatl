@@ -18,4 +18,4 @@ The following articles/links were of great use when building this:
 
 ## API
 
-There is a basic API which allows you to view [all events](http://itaoatl.herokuapp.com/events) or to just get the [next event](http://itaoatl.herokuapp.com/events/next)
+There is a basic API which allows you to view [the upcomming events](http://itaoatl.herokuapp.com/events)
