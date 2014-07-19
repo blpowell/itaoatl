@@ -9,13 +9,13 @@ module Scraper
 
 
 	def self.get_all_events
-		resp = get_liberty_events + get_swansea_city_fixtures
+		resp = get_next_liberty_event + get_next_swansea_fixture + get_next_osprey_fixture
 
 		resp.sort! { |a,b| a.date <=> b.date }
 	end
 
 
- 	def self.get_liberty_events
+ 	def self.get_next_liberty_event
 		base_url = 'http://www.liberty-stadium.com/'
 
 		doc = Nokogiri::HTML(open(base_url + "events.php"))
@@ -31,12 +31,35 @@ module Scraper
 
 			if  event_date.future? #Ignore events in the past
 				resp.push(Event.new(name: event_name, date:event_date, url: event_url, source:"liberty-stadium"))
+				#Once we have one event - quit
 			end
 		end
 		resp
 	end
 
-	def self.get_swansea_city_fixtures
+	def self.get_next_osprey_fixture
+		year = 2015
+		base_url = "http://www.ospreysrugby.com/FixturesResults/PrinterFriendlyVersion/#{year}?team=Ospreys"
+
+		doc = Nokogiri::HTML(open(base_url))
+		resp = Array.new
+
+		doc.xpath('//table/tbody/tr').map do |row|
+			if row.xpath('td').count == 7 #Ignore month rows which span the table
+				match_date = row.xpath('td[1]').text.strip
+
+				if row.xpath('td[5]').text.strip == 'Liberty Stadium, Swansea' #Only home events
+					match_name = "Ospreys v #{row.xpath('td[4]').text.strip}"
+					match_time = row.xpath('td[2]').text.strip
+					resp.push(Event.new(name: match_name, date:build_date(match_date,match_time), url: base_url, source: 'ospreysrugby.com'))
+					break #Once we have one event - stop
+				end
+			end
+		end
+		resp
+	end
+
+	def self.get_next_swansea_fixture
 		base_url = 'http://int.soccerway.com'
 		doc = Nokogiri::HTML(open(base_url + '/teams/wales/swansea-city-afc/738/matches'))
 		resp = Array.new
@@ -49,9 +72,17 @@ module Scraper
 				event_name = "#{home_team} v #{away_team}"
 				match_url = base_url + row.at_xpath("td[5]/a")["href"]
 				resp.push(Event.new(name: event_name, date:match_date, url: match_url, source: 'soccerway.com'))
+				break #Once we have one event - quit
 			end
 		end
 		resp
 	end
- 
+
+	def self.build_date(date_without_year,kickoff_time)
+ 		date = DateTime.parse(date_without_year + ' ' + kickoff_time)
+ 		if date.month < Date.today.month
+ 			date = date + 365
+ 		end
+		return date
+	end
 end
