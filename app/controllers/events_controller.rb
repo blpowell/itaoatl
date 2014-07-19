@@ -9,8 +9,4 @@ class EventsController < ApplicationController
  	render json: Scraper.get_next_event
   end
 
-  def swans_fixtures
- 	render json: Scraper.get_swansea_city_fixtures
-  end
-
 end

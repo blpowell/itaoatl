@@ -9,10 +9,9 @@ module Scraper
 
 
 	def self.get_all_events
-#		resp = Array.new 
-		get_liberty_events + get_bbc_events
+		resp = get_liberty_events + get_swansea_city_fixtures
 
-		#resp.sort! { |a,b| a.date <=> b.date }
+		resp.sort! { |a,b| a.date <=> b.date }
 	end
 
 
@@ -37,34 +36,22 @@ module Scraper
 		resp
 	end
 
-
-	def self.get_bbc_events
-		base_url = 'http://www.bbc.co.uk/sport/football/teams/swansea-city/fixtures'
-		doc = Nokogiri::HTML(open(base_url))
-
+	def self.get_swansea_city_fixtures
+		base_url = 'http://int.soccerway.com'
+		doc = Nokogiri::HTML(open(base_url + '/teams/wales/swansea-city-afc/738/matches'))
 		resp = Array.new
 
-		doc.xpath('//tr[starts-with(@id, "match-row")]').map do |row|
-			match_name = row.at_css("td.match-details").text.strip
-			if match_name.starts_with?('Swansea')
-				match_date = DateTime.parse(row.at_css("td.match-date").text + row.at_css("td.kickoff").text)
-				
-				(match_date.month < Date.today.month)? (match_date = match_date + 365) : match_date 
-
-				match_url = base_url + '#' + row['id']
-				resp.push(Event.new(name: match_name, date:match_date, url: match_url, source:'bbc'))
+		doc.xpath('//table[@class="matches   "]/tbody/tr').map do |row|
+			home_team = row.at_xpath('td[4]').text.strip
+			match_date = Time.at(row['data-timestamp'].strip.to_i)
+			if home_team == 'Swansea City' && match_date.future?
+				away_team = row.at_xpath("td[6]/a")["title"]
+				event_name = "#{home_team} v #{away_team}"
+				match_url = base_url + row.at_xpath("td[5]/a")["href"]
+				resp.push(Event.new(name: event_name, date:match_date, url: match_url, source: 'soccerway.com'))
 			end
-			
 		end
 		resp
-	end 
-
-	def self.get_swansea_city_fixtures
-		base_url = 'http://www.football-data.org/soccerseason/354/fixtures?team=Swansea%20City'
-		doc = JSON.load(open(base_url)).select {|hash| hash['homeTeam'] == 'Swansea City'}
-		resp = Array.new
-		resp.push(Event.new(name: match_name, date:match_date, url: match_url, source:'bbc'))
-
 	end
  
 end
