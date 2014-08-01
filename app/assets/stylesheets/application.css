@@ -1,5 +1,5 @@
 body {
-	font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	font-family: Arial, sans-serif;
 	color: #999;
 }
 
@@ -16,11 +16,20 @@ a {
    	margin-top: 25px;
 }
 
-#huge {
+.huge {
 	font-size: 7em;
 	text-align: center;
 	color: #4C4C4C;
 
+}
+
+.yes
+{
+	color: #FF0000;
+}
+
+.no {
+	color: #009900;
 }
 
 #upcoming_event {

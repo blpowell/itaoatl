@@ -6,7 +6,7 @@ Site which will let you know if there is anything on at the [Liberty Stadium](ht
 
 Written (Badly) in RoR to help me get to know the language/framework.
 
-Check it out [here](http://itaoatl.herokuapp.com)
+Check it out [here](http://isthereanythingonatthelibertystadium.com)
 
 ## Resources
 

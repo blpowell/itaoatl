@@ -6,12 +6,12 @@
 	</div>
 <%else%>
 	<% if@event.on_today%>
-		<div id="huge"><%=@y %></div>
+		<div class="huge yes"><%=@y %></div>
 		<div id="upcoming_event">
 			<p><a href="<%=@event.url %>"><%=@event.name %></a> is on today at <%= @event.date.strftime("%H:%M") %></p>
 		</div>
 	<% else %>
-		<div id="huge"><%=@n %></div>
+		<div class="huge no"><%=@n %></div>
 		<div id="upcoming_event">
 			<p>
 			but <a href="<%=@event.url %>"><%=@event.name %></a> is <%=DateHelper.readable_future_date(@event.date) %> <br/>
