@@ -18,4 +18,4 @@ The following articles/links were of great use when building this:
 
 ## API
 
-There is a basic API which allows you to view [the upcomming events](http://itaoatl.herokuapp.com/events)
+There is a basic API which allows you to view [the upcomming events](http://isthereanythingonatthelibertystadium.com/events)
