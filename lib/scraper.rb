@@ -46,9 +46,10 @@ module Scraper
 
 		doc.xpath('//table/tbody/tr').map do |row|
 			if row.xpath('td').count == 7 #Ignore month rows which span the table
-				match_date = row.xpath('td[1]').text.strip
-
-				if row.xpath('td[5]').text.strip == 'Liberty Stadium, Swansea' #Only home events
+				#match_date = row.xpath('td[1]').text.strip
+				match_date = Time.at(row.xpath('td[1]').text.strip.to_i)
+				match_location = row.xpath('td[5]').text.strip 
+				if  match_location == 'Liberty Stadium, Swansea' && match_date.future? #Only home events in the future
 					match_name = "Ospreys v #{row.xpath('td[4]').text.strip}"
 					match_time = row.xpath('td[2]').text.strip
 					resp.push(Event.new(name: match_name, date:build_date(match_date,match_time), url: base_url, source: 'ospreysrugby.com'))
